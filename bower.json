@@ -1,0 +1,23 @@
+{
+  "name": "h5",
+  "description": "h5",
+  "main": "index.js",
+  "authors": [
+    "erluzi"
+  ],
+  "license": "ISC",
+  "keywords": [
+    "h5"
+  ],
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "devDependencies": {
+    "shake.js": "https://github.com/alexgibson/shake.js.git#^1.2.2"
+  }
+}

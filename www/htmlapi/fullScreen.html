@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-touch-fullscreen" content="yes">
+    <meta name="format-detection" content="telephone=no,email=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>fullScreen 全屏api</title>
+    <style>
+        body{
+            margin: 0;
+        }
+        img{
+            max-width: 100%;
+            height: auto;
+        }
+        section{
+            height: 100vw;
+            border: 1px solid #000;
+        }
+        .box-fullable{
+            width: 200px;
+            height: 200px;
+            background-color: antiquewhite;
+        }
+        .box-fullable img{
+            width: 50%;
+            pointer-events: none;
+        }
+        :-webkit-full-screen {
+            width: 100%;
+            height: 100%;
+        }
+
+        :-moz-full-screen { /* properties */ }
+
+        :-ms-fullscreen { /* properties */ }
+
+        :full-screen {}
+
+        :fullscreen { /* spec / / properties */ }
+
+        :-webkit-full-screen video { width: 100%; height: 100%; }
+        :-webkit-full-screen img { width: 100%; height: auto }
+    </style>
+</head>
+<body>
+<section>
+    <div class="box-fullable">
+        <img src="img/car.png" alt="">
+    </div>
+</section>
+
+<script>
+    function fullScreen(e){
+        var element = e.target;
+        if(element.requestFullscreen){
+            element.requestFullscreen();
+        }else if(element.mozRequestFullScreen){
+            element.mozRequestFullScreen()
+        }else if(element.msRequestFullscreen){
+            element.msRequestFullscreen()
+        }else if(element.webkitRequestFullscreen){
+            element.webkitRequestFullscreen()
+        }
+        //element.addEventListener('click', exitFullscreen, false)
+    }
+
+    function exitFullscreen(e) {
+        var element = e.target;
+        if (document.exitFullscreen) {
+            document.exitFullscreen();
+        } else if (document.msExitFullscreen) {
+            document.msExitFullscreen();
+        } else if (document.mozCancelFullScreen) {
+            document.mozCancelFullScreen();
+        } else if (document.webkitExitFullscreen) {
+            document.webkitExitFullscreen();
+        }
+        //element.removeEventListener('click', exitFullscreen, false);
+    }
+
+    var $$ = document.querySelectorAll.bind(document);
+    [].forEach.call($$('section div'), function (item) {
+        item.addEventListener('click', fullScreen)
+    });
+</script>
+</body>
+</html>

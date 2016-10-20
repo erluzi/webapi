@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-touch-fullscreen" content="yes">
+    <meta name="format-detection" content="telephone=no,email=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>webworker</title>
+    <style>
+        .ctrl{
+            display: none;
+        }
+    </style>
+</head>
+<body>
+<p>
+    父子进程需监听message事件
+</p>
+<div>
+    <button class="worker-open">worker open</button>
+    <button class="worker-close">worker close</button>
+
+    <button class="serviceWorker-open">serviceWorker open</button>
+    <button class="serviceWorker-close">serviceWorker close</button>
+
+</div>
+<div class="ctrl">
+    <button class="print">print</button>
+    <button class="xhr">xhr</button>
+    <button class="timer">timer</button>
+</div>
+<script>
+
+    var $ = document.querySelector.bind(document);
+    var $$ = document.querySelectorAll.bind(document);
+
+    function supportWorker(){
+        return typeof window.Worker !== 'undefined'
+    }
+
+    function init(){
+        if(supportWorker()){
+            var worker;
+            $('.print').addEventListener('click', function () {
+                worker.postMessage({method: 'print', args: 'hello world'});
+            });
+
+            $('.xhr').addEventListener('click', function () {
+                worker.postMessage({method: 'xhr', args: '../json/data.json'});
+            });
+
+            $('.timer').addEventListener('click', function () {
+                worker.postMessage({method: 'timer', args: 60});
+            });
+
+            $('.worker-open').addEventListener('click', function () {
+                worker = new Worker('js/worker.js');
+                worker.addEventListener('message', function (e) {
+                    console.log(e.data.reply)
+                });
+                worker.addEventListener('error', function (e) {
+                    console.log(e)
+                });
+                $('.ctrl').style.display = 'block'
+            });
+
+            $('.worker-close').addEventListener('click', function () {
+                worker.terminate();
+                $('.ctrl').style.display = 'none'
+            });
+
+        }
+
+        $('.serviceWorker-open').addEventListener('click', function () {
+            if('serviceWorker' in navigator){
+                navigator.serviceWorker.register('serviceWorker.js')
+                        .then(function (registration) {
+                            console.log('ServiceWorker登记成功，范围为', registration.scope);
+                        })
+                        .catch(function (err) {
+                            console.log('ServiceWorker登记失败：', err);
+                        })
+            }
+        })
+    }
+
+    window.onload = init;
+</script>
+</body>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="renderer" content="webkit">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>响应式--图片</title>
+    <style>
+        picture{
+            display: block;
+        }
+    </style>
+
+</head>
+<body>
+    <picture>
+        <source srcset="img/1.jpeg" media="(max-width: 768px)">
+        <source srcset="img/2.jpeg">
+        <img srcset="img/2.jpeg" alt="default img">
+    </picture>
+<p>this is p under picture , picture支持情况不良好,还需等待...</p>
+
+    <img class="image"
+         srcset="img/1.jpeg 128w, img/2.jpeg 256w"
+         sizes="(max-width: 768px) 100px, 200px">
+</body>
+</html>

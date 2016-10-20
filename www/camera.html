@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-touch-fullscreen" content="yes">
+    <meta name="format-detection" content="telephone=no,email=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>camera</title>
+    <style>
+        #input-up{
+            opacity: 0;
+        }
+        .btn-up{
+            padding: 5px 10px;
+            border-radius: 3px;
+            color: #fff;
+            background-color: cadetblue;
+            box-shadow: 0 -.1em 0 0 rgba(0,0,0,.1) inset;
+        }
+    </style>
+</head>
+<body>
+<label for="input-up" class="btn btn-up">
+    上传图片
+</label>
+<input id="input-up" type="file" accept="image/*" capture="camera">
+
+<p>视频</p>
+<input type="file" accept="video/*" capture="camcorder">
+
+<p>音频</p>
+<input type="file" accept="audio/*" capture="microphone">
+
+<p>图片多选</p>
+<input type="file" accept="image/*" multiple>
+
+<script>
+//    var up = document.querySelector('.btn-up');
+//    up.addEventListener('click', function () {
+//
+//    })
+</script>
+</body>
+</html>
