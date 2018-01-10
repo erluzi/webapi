@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Title</title>
+    <style>
+        dialog{
+            border: none;
+            border-radius: 5%;
+            min-width: 70%;
+        }
+        button{
+            background-color: #ffa800;
+            border: 0 none;
+            color: #fff;
+            border-radius: 5%;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <button onclick="showDialog('#dialog')">dialog</button>
+        <button onclick="showDialogReturnVal('#dialog')">dialog return val</button>
+    </div>
+    <dialog id="dialog">
+        <h1>i am dialog title</h1>
+        <p>i am dialog content</p>
+        <button onclick="closeDialog('#dialog', 'hi')">close</button>
+    </dialog>
+
+    <script>
+        function showDialog(anchor){
+            console.log(dialog)
+//            dialog.showModal(anchor);
+            document.querySelector(anchor).showModal(anchor);
+        }
+
+        function closeDialog(anchor, result){
+//            dialog.close(result)
+            document.querySelector(anchor).close(result);
+        }
+
+        function showDialogReturnVal(anchor) {
+            console.log(document.querySelector(anchor).returnValue)
+        }
+    </script>
+</body>
+</html>
