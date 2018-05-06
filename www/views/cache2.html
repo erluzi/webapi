@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <title>cache2</title>
     <script defer>
-        //监听同源
+        //监听同源,对localStorage生效
         window.addEventListener('storage', function (e) {
             console.log('key--'+e.key)
             console.log('oldValue--'+e.oldValue)

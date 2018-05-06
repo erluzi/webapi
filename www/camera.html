@@ -40,6 +40,7 @@
 <!--<label for="input-up" class="btn btn-up">-->
     <!--上传图片-->
 <!--</label>-->
+<p>上传到uploads文件夹</p>
 <div class="box-img">
     <input type="file" accept="image/*" capture="camera" id="file">
 </div>
@@ -85,6 +86,7 @@
     function use(selector) {
         var domInput = $(selector);
         if(domInput){
+            var _self = this;
             domInput.addEventListener('change', function (event) {
                 if(this.files.length == 0) {
                     console.error('请选择文件')
@@ -96,12 +98,12 @@
                     var img = new Image();
                     img.onload = function () {
                         //压缩
-                        var blob = imgUp.getBlob(img, file.type, 0.8)
+                        var blob = _self.getBlob(img, file.type, 0.8);
                         //压缩后size反而变大
                         if(blob.size>file.size){
-                            imgUp.fileUpload(file)
+                            _self.fileUpload(file)
                         }else{
-                            imgUp.fileUpload(blob)
+                            _self.fileUpload(blob)
                         }
                     }
                     readerImg.onload = function (e) {
