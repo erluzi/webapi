@@ -9,14 +9,14 @@
 </head>
 
 <body>
-    <button id="btn1">notify me</button>
+    <button id="btn1" onclick="notify()">notify me</button>
     <script>
         if (!window.Notification) {
             alert("This browser does not support system notifications");
         }else{
             var permission = Notification.permission;
             console.log(permission);
-            if (permission == 'default') {
+            if (permission === 'default') {
                 Notification.requestPermission().then(function (result) {
                     console.log(result)
                 })
@@ -28,22 +28,16 @@
             var n = new Notification(title, options);
             n.addEventListener('click', function(e){
                 console.log(e)
-            })
+            });
             setTimeout(n.close.bind(n), 5000);
         }
 
-        function addEvent(){
-            var btn1 = document.getElementById('btn1');
-            btn1.addEventListener('click', function(){
-                spawnNotification('hi', {
-                    icon: '../img/car.png',
-                    body: 'can u see?'
-                })
-            })
+        function notify(){
+	        spawnNotification('hi', {
+		        icon: '../img/car.png',
+		        body: 'can u see?'
+	        })
         }
-
-        addEvent()
-        
     </script>
 </body>
 
