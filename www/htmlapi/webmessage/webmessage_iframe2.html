@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+frame2
+<p></p>
+<script>
+    let el_p = document.querySelector('p');
+    window.addEventListener('message', messageEvent => {
+        el_p.innerHTML = messageEvent.data;
+        if(messageEvent.ports.length > 0){
+            messageEvent.ports[0].postMessage(`frame2 has get message: ${messageEvent.data}`)
+        }
+    })
+</script>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div>
+    <p></p>
+    <button>send web message</button>
+</div>
+
+<iframe src="webmessage_iframe1.html" frameborder="0"></iframe>
+<iframe src="webmessage_iframe2.html" frameborder="0"></iframe>
+
+<script>
+    let el_p = document.querySelector('p');
+    let el_button = document.querySelector('button');
+    let frame = document.querySelectorAll('iframe');
+
+    // frame1 => this => frame2 => frame1
+    window.addEventListener('message', messageEvent => {
+        if(messageEvent.ports.length > 0){
+            el_p.innerHTML = messageEvent.data;
+            frame[1].contentWindow.postMessage('port open', '*', messageEvent.ports)
+        }
+    });
+
+    window.addEventListener('DOMContentLoaded', e => {
+        el_button.addEventListener('click', () => {
+            frame[1].contentWindow.postMessage('hi from window', '*')
+        });
+    });
+
+</script>
+
+</body>
+</html>
