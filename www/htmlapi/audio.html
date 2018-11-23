@@ -138,19 +138,15 @@
     }
     Sound.prototype.constructor = Sound;
 
-    let context = new (window.AudioContext || window.webkitAudioContext)()
+    let context = new (window.AudioContext || window.webkitAudioContext)();
 
-    var doms = document.querySelectorAll('.note'), i = 0, l = doms.length;
-    for(; i<l; i++){
-        doms[i].addEventListener('mouseenter', function () {
-            let sound = new Sound(context)
-            let value = this.dataset.frequency;
-            sound.play(value)
-        });
-
-//        doms[i].addEventListener('mouseleave', function () {})
+    let doms = [...document.querySelectorAll('.note')];
+    let soundOfDom = doms.map(dom => {return {sound: new Sound(context), value: dom.dataset.frequency, dom: dom}});
+    for(let item of soundOfDom){
+        item.dom.addEventListener('mouseenter', () => {
+            item.sound.play(item.value)
+        })
     }
-
 
 function SoundOfRecord(context, buffer) {
     this.context = context
