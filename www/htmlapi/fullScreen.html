@@ -5,7 +5,7 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-touch-fullscreen" content="yes">
     <meta name="format-detection" content="telephone=no,email=no">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="viewport" content="width=device-width">
     <title>fullScreen 全屏api</title>
     <style>
         body{
@@ -28,10 +28,11 @@
             width: 50%;
             pointer-events: none;
         }
-        :-webkit-full-screen {
-            width: 100%;
-            height: 100%;
-        }
+        /*:-webkit-full-screen {*/
+            /*width: 100%;*/
+            /*height: 100%;*/
+        /*}*/
+        /*:-webkit-full-screen img { width: 100%; height: auto }*/
 
         :-moz-full-screen { /* properties */ }
 
@@ -39,10 +40,7 @@
 
         :full-screen {}
 
-        :fullscreen { /* spec / / properties */ }
-
-        :-webkit-full-screen video { width: 100%; height: 100%; }
-        :-webkit-full-screen img { width: 100%; height: auto }
+        :fullscreen { /* properties */ }
     </style>
 </head>
 <body>
