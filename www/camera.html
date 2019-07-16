@@ -88,7 +88,7 @@
         if(domInput){
             var _self = this;
             domInput.addEventListener('change', function (event) {
-                if(this.files.length == 0) {
+                if(!this.files.length) {
                     console.error('请选择文件')
                 } else if (!/image\/\w+/.test(this.files[0].type)) {
                     console.error('请确保文件类型为图像类型')
@@ -97,14 +97,9 @@
                     var readerImg = new FileReader();
                     var img = new Image();
                     img.onload = function () {
-                        //压缩
+                        //压缩(压缩后可能size反而变大)
                         var blob = _self.getBlob(img, file.type, 0.8);
-                        //压缩后size反而变大
-                        if(blob.size>file.size){
-                            _self.fileUpload(file)
-                        }else{
-                            _self.fileUpload(blob)
-                        }
+                        _self.fileUpload(blob.size > file.size ? file : blob)
                     }
                     readerImg.onload = function (e) {
                         img.src = e.target.result;
@@ -118,8 +113,7 @@
         }
     }
     var imgUp = {use, getBlob, fileUpload}
-    imgUp.use('#file');
-
+    imgUp.use('#file')
 </script>
 </body>
 </html>
