@@ -61,7 +61,7 @@
 
 <script>
   function fullScreen(e) {
-    var element = e.target
+    let element = e.target
     if (element.requestFullscreen) {
       element.requestFullscreen()
     } else if (element.mozRequestFullScreen) {
@@ -75,7 +75,7 @@
   }
 
   function exitFullscreen(e) {
-    var element = e.target
+    let element = e.target
     if (document.exitFullscreen) {
       document.exitFullscreen()
     } else if (document.msExitFullscreen) {
@@ -88,7 +88,7 @@
     //element.removeEventListener('click', exitFullscreen, false);
   }
 
-  var $$ = document.querySelectorAll.bind(document);
+  let $$ = document.querySelectorAll.bind(document);
   [].forEach.call($$('section div'), function (item) {
     item.addEventListener('click', fullScreen)
   })
