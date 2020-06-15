@@ -92,6 +92,7 @@
   function use(selector) {
     let domInput = $(selector)
     if (domInput) {
+      let _self = this
       domInput.addEventListener('change', function (event) {
         if (!this.files.length) {
           console.error('请选择文件')
@@ -103,8 +104,8 @@
           let img = new Image()
           img.onload = function () {
             //压缩(压缩后可能size反而变大)
-            let blob = this.getBlob(img, file.type, 0.8)
-            this.fileUpload(blob.size > file.size ? file : blob)
+            let blob = _self.getBlob(img, file.type, 0.8)
+            _self.fileUpload(blob.size > file.size ? file : blob)
           }
           readerImg.onload = function (e) {
             img.src = e.target.result
