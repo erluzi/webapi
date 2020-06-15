@@ -58,31 +58,31 @@
 <input type="file" accept="image/*" multiple>
 
 <script>
-  var $ = document.querySelector.bind(document)
+  let $ = document.querySelector.bind(document)
 
   function fileUpload(blob) {
-    var fd = new FormData()
+    let fd = new FormData()
     fd.append('avatar', blob)
-    var xhr = new XMLHttpRequest()
+    let xhr = new XMLHttpRequest()
     xhr.open('POST', '/single')
     xhr.send(fd)
   }
 
   function getBlob(img, type, quality) {
-    var w = img.naturalWidth, h = img.naturalHeight, scale = 1, max = 1000
-    var canvas = document.createElement('canvas'), ctx = canvas.getContext('2d')
+    let w = img.naturalWidth, h = img.naturalHeight, scale = 1, max = 1000
+    let canvas = document.createElement('canvas'), ctx = canvas.getContext('2d')
     if (w > max || h > max) scale = max / Math.max(w, h)
     canvas.width = Math.floor(w * scale)
     canvas.height = Math.floor(h * scale)
     //ctx.drawImage(img, 0, 0, canvas.width, canvas.height, 0, 0, canvas.width, canvas.height);
     ctx.drawImage(img, 0, 0, canvas.width, canvas.height)
 
-    var data = canvas.toDataURL(type, quality)
+    let data = canvas.toDataURL(type, quality)
     //dataURL 的格式为 “data:image/png;base64,****”,逗号之前都是一些说明性的文字，我们只需要逗号之后的就行了
     data = data.split(',')[1]
     data = window.atob(data)
-    var ia = new Uint8Array(data.length)
-    for (var i = 0; i < data.length; i++) {
+    let ia = new Uint8Array(data.length)
+    for (let i = 0; i < data.length; i++) {
       ia[i] = data.charCodeAt(i)
     }
     //canvas.toDataURL 返回的默认格式就是 image/png
@@ -90,22 +90,21 @@
   }
 
   function use(selector) {
-    var domInput = $(selector)
+    let domInput = $(selector)
     if (domInput) {
-      var _self = this
       domInput.addEventListener('change', function (event) {
         if (!this.files.length) {
           console.error('请选择文件')
         } else if (!/image\/\w+/.test(this.files[0].type)) {
           console.error('请确保文件类型为图像类型')
         } else {
-          var file = this.files[0]
-          var readerImg = new FileReader()
-          var img = new Image()
+          let file = this.files[0]
+          let readerImg = new FileReader()
+          let img = new Image()
           img.onload = function () {
             //压缩(压缩后可能size反而变大)
-            var blob = _self.getBlob(img, file.type, 0.8)
-            _self.fileUpload(blob.size > file.size ? file : blob)
+            let blob = this.getBlob(img, file.type, 0.8)
+            this.fileUpload(blob.size > file.size ? file : blob)
           }
           readerImg.onload = function (e) {
             img.src = e.target.result
@@ -119,7 +118,7 @@
     }
   }
 
-  var imgUp = {use, getBlob, fileUpload}
+  let imgUp = {use, getBlob, fileUpload}
   imgUp.use('#file')
 </script>
 </body>

@@ -41,12 +41,12 @@
 <div class="ball"></div>
 
 <script>
-  var dom_alpha = document.querySelector('.alpha')
-  var dom_beta = document.querySelector('.beta')
-  var dom_gamma = document.querySelector('.gamma')
+  let dom_alpha = document.querySelector('.alpha')
+  let dom_beta = document.querySelector('.beta')
+  let dom_gamma = document.querySelector('.gamma')
 
-  var west = document.querySelector('.west')
-  var ball = document.querySelector('.ball')
+  let west = document.querySelector('.west')
+  let ball = document.querySelector('.ball')
 
   window.addEventListener('deviceorientation', orientationHandler, true)
 
@@ -58,9 +58,9 @@
   function orientationHandler(event) {
     // process event.alpha, event.beta and event.gamma
 
-    var alpha = event.alpha
-    var beta = event.beta
-    var gamma = event.gamma
+    let alpha = event.alpha
+    let beta = event.beta
+    let gamma = event.gamma
 
     dom_alpha.innerHTML = alpha
     dom_beta.innerHTML = beta

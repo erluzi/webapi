@@ -23,16 +23,16 @@
 
 <script src="js/shake.js"></script>
 <script>
-  var result = document.querySelector('#result')
+  let result = document.querySelector('#result')
 
-  var arr = ['a', 'b', 'c', 'd']
-  var myShake = new Shake()
+  let arr = ['a', 'b', 'c', 'd']
+  let myShake = new Shake()
   myShake.start()
 
   window.addEventListener('shake', shakeHandler, false)
 
   function shakeHandler() {
-    var num = Math.floor(Math.random() * 4)
+    let num = Math.floor(Math.random() * 4)
     result.innerHTML = 'u get ' + arr[num] + ' !'
   }
 </script>
