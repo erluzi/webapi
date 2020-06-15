@@ -28,8 +28,8 @@
 </template>
 <btn-danger></btn-danger>
 <script>
-  var $ = document.querySelector.bind(document)
-  var $$ = document.querySelectorAll.bind(document)
+  let $ = document.querySelector.bind(document)
+  let $$ = document.querySelectorAll.bind(document)
 
   function supportTemplate() {
     return 'content' in document.createElement('template')
@@ -46,7 +46,7 @@
   function init() {
     appendTemplate()
     appendBtn()
-    var btnDanger = $('btn-danger')
+    let btnDanger = $('btn-danger')
     console.log(btnDanger.val)
   }
 
@@ -54,7 +54,7 @@
    * 插入自定义模版
    */
   function appendTemplate() {
-    var temp = $('#temp')
+    let temp = $('#temp')
     temp.content.querySelector('img').src = '../img/car.png'
     temp.content.querySelector('p').textContent = 'this is a car'
     document.body.appendChild(temp.content)
@@ -64,7 +64,7 @@
    * 插入自定义元素
    */
   function appendBtn() {
-    var proto = Object.create(HTMLElement.prototype, {
+    let proto = Object.create(HTMLElement.prototype, {
       val: {
         configurable: false,
         get: function () {
@@ -85,7 +85,7 @@
       this.innerHTML = 'danger!'
 
     }
-    var btnDanger = document.registerElement('btn-danger', {
+    let btnDanger = document.registerElement('btn-danger', {
       prototype: proto,
     })
     document.body.appendChild(new btnDanger())
