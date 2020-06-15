@@ -1,40 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-touch-fullscreen" content="yes">
-    <meta name="format-detection" content="telephone=no,email=no">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <title>page visibility</title>
+  <meta charset="UTF-8">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-touch-fullscreen" content="yes">
+  <meta name="format-detection" content="telephone=no,email=no">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <title>page visibility</title>
 
 </head>
 <body>
 <p>test visibility</p>
 <script>
-    window.onload = init;
-    function getPrefix(){
-        if(typeof document.hidden !== 'undefined'){
-            return ['hidden', 'visibilitychange', 'visibilityState']
-        }
-        else if('mozHidden' in document){
-            return ['mozHidden', 'mozvisibilitychange', 'mozVisibilityState']
-        }
-        else if('msHidden' in document){
-            return ['msHidden', 'msvisibilitychange', 'msVisibilityState']
-        }
-        else if('webkitHidden' in document){
-            return ['webkitHidden', 'webkitvisibilitychange', 'webkitVisibilityState']
-        }
-    }
-    function init(){
-        var prefix = getPrefix();
-        document.addEventListener(prefix[1], function () {
-            document.title = document[prefix[2]]
-        }, false);
+  window.onload = init
 
-        document.title = document[prefix[2]];
+  function getPrefix() {
+    if (typeof document.hidden !== 'undefined') {
+      return ['hidden', 'visibilitychange', 'visibilityState']
+    } else if ('mozHidden' in document) {
+      return ['mozHidden', 'mozvisibilitychange', 'mozVisibilityState']
+    } else if ('msHidden' in document) {
+      return ['msHidden', 'msvisibilitychange', 'msVisibilityState']
+    } else if ('webkitHidden' in document) {
+      return ['webkitHidden', 'webkitvisibilitychange', 'webkitVisibilityState']
     }
+  }
+
+  function init() {
+    let prefix = getPrefix()
+    document.addEventListener(prefix[1], function () {
+      document.title = document[prefix[2]]
+    }, false)
+
+    document.title = document[prefix[2]]
+  }
 </script>
 </body>
 </html>
